@@ -48,4 +48,16 @@ public class DriverService implements DriverGetMethods, DriverPostMethods{
             return respuesta(e.getMessage(),false,driver,null);
         }
     }
+
+    public ResponseEntity<Driver> conductorPorId(int id) {
+        try{
+            Driver driver = driverDao.findById(id).orElse(null);
+            if (driver == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(driver, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
