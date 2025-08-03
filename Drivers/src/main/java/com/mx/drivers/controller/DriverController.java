@@ -24,4 +24,9 @@ public class DriverController {
     public Respuesta crearConductor(@RequestBody Driver driver) {
         return driverService.crearConductor(driver);
     }
+
+    @GetMapping("/conductorPorId")
+    public ResponseEntity<Driver> conductorPorId(@RequestParam("Id") int id) {
+        return driverService.conductorPorId(id);
+    }
 }
