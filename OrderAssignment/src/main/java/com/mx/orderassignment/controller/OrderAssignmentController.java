@@ -2,6 +2,7 @@ package com.mx.orderassignment.controller;
 
 import com.mx.orderassignment.dto.Respuesta;
 import com.mx.orderassignment.service.OrderAssignmentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/orderAssignment")
+@SecurityRequirement(name = "bearerAuth")
 public class OrderAssignmentController {
 
     @Autowired
