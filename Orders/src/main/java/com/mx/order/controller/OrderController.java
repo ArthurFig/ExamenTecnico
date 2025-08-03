@@ -3,6 +3,7 @@ package com.mx.order.controller;
 import com.mx.order.dto.Respuesta;
 import com.mx.order.entity.Order;
 import com.mx.order.service.OrderService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
+@SecurityRequirement(name = "bearerAuth")
 public class OrderController {
     @Autowired
     private OrderService orderService;
