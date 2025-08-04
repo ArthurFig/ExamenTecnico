@@ -1,8 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="r2r11"
-
-ENTRYPOINT ["top", "-b"]
-
 # 1. Usar una imagen base oficial de OpenJDK 21
 FROM openjdk:21-slim
 

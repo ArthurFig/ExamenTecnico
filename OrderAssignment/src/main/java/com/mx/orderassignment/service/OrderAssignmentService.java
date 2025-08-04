@@ -33,7 +33,7 @@ public class OrderAssignmentService implements OrderAssignmentMethods{
         return new Respuesta(mensaje, estado, objeto, LocalDateTime.now());
     }
 
-    private final String UPLOAD_DIR = "C:\\Users\\r2r11\\OneDrive\\Documentos\\ExamenTecnicoTag";
+    private final String UPLOAD_DIR = "/app/uploads";
 
     @Override
     public Respuesta asignarOrden(int orderId, int driverId, MultipartFile pdf, MultipartFile image) {
@@ -53,8 +53,8 @@ public class OrderAssignmentService implements OrderAssignmentMethods{
                 return respuesta("La orden no está en estado 'CREATED'", false, order, null);
             }
 
-            String pdfPath = saveFile(pdf, "\\pdfs");
-            String imagePath = saveFile(image, "\\images");
+            String pdfPath = saveFile(pdf, "/pdfs/");
+            String imagePath = saveFile(image, "/images/");
 
             OrderAssignment assignment = new OrderAssignment();
             assignment.setOrderId(orderId);
