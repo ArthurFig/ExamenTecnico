@@ -15,8 +15,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class OrderAssignment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_assignments_seq")
+    @SequenceGenerator(name = "order_assignments_seq", sequenceName = "ORDER_ASSIGNMENTS_SEQ", allocationSize = 1)
     private Long id;
+
     @NotNull
     private int orderId;
     @NotNull
