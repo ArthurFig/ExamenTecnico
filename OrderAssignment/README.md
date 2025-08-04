@@ -84,11 +84,13 @@ Este microservicio es responsable de gestionar la asignacion de ordenes a conduc
 ```
 
 ## Carpeta de guardado
-Cambiar la ruta de guardado en el OrderAssigmentService a la ruta que sea conveniente para las pruebas
+Se puede cambiar la ruta de guardado, ya sea en una ruta local o en docker
 
 
 private final String UPLOAD_DIR = "C:\\Users\\r2r11\\OneDrive\\Documentos\\ExamenTecnicoTag";
 
+String pdfPath = saveFile(pdf, "\\pdfs\\");
+String imagePath = saveFile(image, "\\images\\");
 
 ## ⚙️ Propiedades (application.properties)
 Cambiar los puertos segun las necesidades y configuraciones
