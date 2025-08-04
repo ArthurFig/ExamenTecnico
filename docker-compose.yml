@@ -5,13 +5,56 @@ services:
     image: gvenzl/oracle-xe
     container_name: oracle-xe
     ports:
-        - "9005:1521" 
-        - "9006:8080"
+      - "9005:1521"   
+      - "9006:8080"   
     environment:
       ORACLE_PASSWORD: 12345
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/ords/"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
     restart: unless-stopped
+    networks:
+      - backend
+
+  orders-service:
+    image: imagen-orders
+    container_name: orders-service
+    ports:
+      - "9001:9001"
+    depends_on:
+      - oracle-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-db:1521/XEPDB1
+      SPRING_DATASOURCE_USERNAME: system
+      SPRING_DATASOURCE_PASSWORD: 12345
+    networks:
+      - backend
+
+  drivers-service:
+    image: imagen-drivers
+    container_name: drivers-service
+    ports:
+      - "9002:9002"
+    depends_on:
+      - oracle-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-db:1521/XEPDB1
+      SPRING_DATASOURCE_USERNAME: system
+      SPRING_DATASOURCE_PASSWORD: 12345
+    networks:
+      - backend
+
+  assignment-service:
+    image: imagen-oa
+    container_name: oa-service
+    ports:
+      - "9003:9003"
+    depends_on:
+      - oracle-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle-db:1521/XEPDB1
+      SPRING_DATASOURCE_USERNAME: system
+      SPRING_DATASOURCE_PASSWORD: 12345
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
