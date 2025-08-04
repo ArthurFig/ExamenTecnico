@@ -1,5 +1,6 @@
 package com.mx.drivers.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -21,6 +22,7 @@ public class Driver {
     private int id;
     @NotNull(message = "El name no debe ser nulo o vacio")
     private String name;
+    @Column(name = "LICENSE")
     @NotNull(message = "El licenseNumber no debe ser nulo o vacio")
     private String licenseNumber;
     private String active;
